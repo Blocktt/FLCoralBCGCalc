@@ -1,6 +1,6 @@
 ---
 title: "Taxa Translator, About"
-date: "2024-01-12"
+date: "2024-03-21"
 output: html_fragment
 editor_options: 
   markdown: 
@@ -17,74 +17,69 @@ knitr::opts_chunk$set(echo = FALSE
 # Purpose
 
 Create an input file with the proper Operational Taxonomic Units (OTUs)
-and attributes for each calculation. Bug and fish files should be
-created separately.
-
-This function performs two steps to the input file:
+and attributes for each calculation. This function performs two steps to
+the input file:
 
 1.  "Translates" the original TaxonID to the proper OTU based on the
     selected calculation.
 
-2.  Appends the New Mexico taxa attributes, which include phylogenetic
-    data for both bugs and fish. For bugs, traits include functional
-    feeding group (FFG), habit (Habit), tolerance value (TolVal), and
-    BCG attributes (BCG_ATTR). For fish, traits include trophic Type
-    (Trophic), reproduction type (Reproduction), BCG attributes
-    (BCG_ATTR), and whether the taxon is a long-lived, native,
-    large-bodied species (LLNLB in Type field).
+2.  Appends the Florida taxa attributes, which include phylogenetic data
+    and traits. For corals, taxon-specific traits include BCG attribute
+    assignments (BCG_ATTR), whether the taxon is \'Sometimes\' or
+    \'Never\' weedy (WEEDY), whether the taxon is a \'Large
+    Reef-Building Coral\' (LRBC), and the Morphological Conversion
+    Factor (MORPHCONVFACT) which is used to calculate Live tissue area
+    on Colony Surface Area (LCSA).
 
-The 'taxa translator' and attribute tables are based on river
-biomonitoring data from sandy bottom rivers in the southwestern U.S. and
-will be updated on an annual basis.
+The 'taxa translator' and attribute tables are based on reef
+biomonitoring data from Florida reefs and will be updated regularly.
 
-Click
-<a href="https://github.com/leppott/BioMonTools_SupportFiles/tree/main/data/taxa_official" target = "_blank">here</a>
-to download the tables and associated metadata files from GitHub.
+Download the
+<a href="https://github.com/leppott/BioMonTools_SupportFiles/tree/main/data/taxa_official" target = "_blank">Taxa
+Translator, Taxa Attributes, and Metadata</a> from Github.
 
 ![Filebuilder Taxa Translate
 steps.](images/FileBuilder_TaxaTrans_About_Fig1.jpg){width="80%"}
 
 # Input File
 
-There are three required fields:
+There are multiple fields that the user is required to provide:
 
--   SampleID
+-   **SampleID** (Unique sample identifier; typically comprised of the
+    site name, sample date, and replicate number.)
 
-    -   Unique sample identifier. Includes any replicate/duplicate
-        information.
+-   **TaxaID** (Unique taxa name)
 
--   TaxaID
+-   **TotTranLngth_M** (Juvenile colonies should be marked as 'TRUE'.)
 
-    -   Unique taxa name
+-   **Juvenile** (Juvenile colonies should be marked as 'TRUE'.)
 
--   Count of individuals (e.g., N_Taxa)
+-   **DiamMax_cm** (Maximum diameter of the colony (cm).)
 
-    -   Count of taxa individuals
+-   **DiamPerp_cm** (Perpendicular diameter of the colony (cm).)
 
-If you named the required fields differently in your input file, it's
-ok. Click on the drop-down menus. The list of fields in your input file
-will appear. Select the correct column headings.
+-   **Height_cm** (Height of the colony (cm).)
 
-Optional - if there are additional fields in the input file that you
-want to carry through into the output file (e.g., stationID, collection
-date, latitude, longitude), click on the 'Columns to keep in output'
-box. The list of fields in your input file will appear. Click on the
-fields that you want to include. If you change your mind and want to
-remove a field, click on it and hit 'delete.'
+-   **TotMort_pct** (% total mortality of the colony (e.g., 58%). Used
+    to calculate % Living Tissue = 100 - TotMort_pct.)
 
-IMPORTANT: Do not repeat the required columns. Do not include Life Stage
-or other fields that are unique to the taxa and not the sample (such as
-notes from the taxonomist). If a taxon occurs in more than one row for a
-given sample, it will lead to double-counting of that taxon in the
-richness metrics.
+SampleID and TaxaID will be used to match the input file with the taxa
+translator table and attributes table. It is acceptable for your input
+file to have these two fields named differently. Click on the drop-down
+menus. The list of fields in your input file will appear. Select the
+correct column headings.
+
+Other required fields (i.e., TotTranLngth_M, Juvenile, etc.) and any
+option fields that should be carried through into the output file (e.g.,
+stationID, collection date, etc.) should be specified by clicking on the
+'Columns to keep in output' box. The list of fields in your input file
+will appear. Click on the fields that you want to include. If you change
+your mind and want to remove a field, click on it and hit 'delete.'
+[IMPORTANT]{.underline}: Do not add SampleID or TaxaID to this box as
+they are already included from the drop-downs above.
 
 # Test File
 
-Click here to download a test file for
-<a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/NM_BCGCalc/Example_Files/NM_BCG_Bugs_Count_Data_20240111.csv" target="_blank">bugs</a>
-or
-<a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/NM_BCGCalc/Example_Files/NM_BCG_Fish_Count_Data_20240111.csv" target="_blank">fish</a>.
-
-Click
-<a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/NM_BCGCalc/Example_Files/" target="_blank">here</a>
-to download example R scripts and data (all functions).
+Download a test file from GitHub:
+<a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/NM_BCGCalc/Example_Files/NM_BCG_Fish_Count_Data_20240111.csv" target="_blank">Example
+File Builder Input File</a>.

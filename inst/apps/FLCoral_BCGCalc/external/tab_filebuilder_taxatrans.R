@@ -17,20 +17,21 @@ function() {
 
             , h4("C. User File Column Names")
 
-            , h6("Required Fields")
+            , h6("Required Matching Fields")
             , p("If the default values are present they will be auto-populated.")
             # SampleID (really for group_by)
             , uiOutput("UI_taxatrans_user_col_sampid")
             , uiOutput("UI_taxatrans_user_col_taxaid")
             # N_Taxa (really for group_by)
             #, shinyjs::disableduiOutput("UI_taxatrans_user_col_n_taxa"))
-            , uiOutput("UI_taxatrans_user_col_n_taxa")
+            # , uiOutput("UI_taxatrans_user_col_n_taxa")
             # , uiOutput("UI_taxatrans_user_col_indexclass")
             # , uiOutput("UI_taxatrans_user_col_gprr")
 
-            , h6("Optional Fields")
-            , p("All columns other than those specified above (required) or below (optional) will be dropped.
-                IMPORTANT! Do not repeat the required columns, and do not include Life Stage or other fields that might cause a taxon to occur in more than one row for a given sample (which could lead to double-counting of that taxon in the richness metrics) .")
+            , h6("Other Required Fields and Optional Fields")
+            , p("Specify all other required fields here. Do not repeat SampleID and TaxaID.")
+            , p("Specify all optional fields here.")
+            , p("All fields not specified below will be dropped from the output.")
             #, shinyjs::disabled(uiOutput("UI_taxatrans_user_col_groupby"))
             , uiOutput("UI_taxatrans_user_col_groupby")
 

@@ -34,7 +34,7 @@ path_data <- file.path("files", fn_data)
 df_data <- read_excel(path_data, sheet = "FileBuild_TTAA")
 
 # Display
-cap_data <- "File Builder, Taxa Translator, zip file contents. 'xxxx' represents either 'bugs' or 'fish' depending on chosen OTU. 'yyyymmdd' represents the date when the associated file has last been updated."
+cap_data <- "File Builder, Taxa Translator, zip file contents. 'yyyymmdd' represents the date when the associated file has last been updated."
 knitr::kable(df_data, "html", caption = cap_data)
 ```
 

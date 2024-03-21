@@ -117,7 +117,7 @@ dn_files_bsti   <- paste(abr_results, abr_bsti, sep = "_")
 dn_files_report <- paste(abr_results, abr_report, sep = "_")
 
 # Selection Choices----
-sel_community <- c("bugs", "fish")
+sel_community <- c("CREMP_KEYS", "NOT_CREMP_KEYS")
 
 ##  BCG Models ----
 url_bcg_base <- "https://github.com/leppott/BCGcalc/raw/main/inst/extdata"
@@ -130,7 +130,7 @@ df_bcg_models <- as.data.frame(readxl::read_excel(temp_bcg_models
                                                   , guess_max = 10^3
                                                   , sheet = "Rules"))
 #sel_bcg_models <- sort(unique(df_bcg_models$Index_Name))
-sel_bcg_models <- "BCG_NMSandyRivers"
+sel_bcg_models <- "FL_Coral_BCG"
 
 ## Metric Suites
 sel_metric_suites <- ("ThermalHydro")
@@ -148,7 +148,7 @@ df_checks <- as.data.frame(readxl::read_excel(temp_bcg_checks, sheet = "Flags"))
 # BMT, Taxa Official Pick----
 url_taxa_official_pick <- file.path(url_bmt_base
                                     , "taxa_official"
-                                    , "NM_BCG_Pick_Files.csv")
+                                    , "FLCoral_BCG_Pick_Files.csv")
 temp_taxa_official_pick <- tempfile(fileext = ".csv")
 httr::GET(url_taxa_official_pick, httr::write_disk(temp_taxa_official_pick))
 
