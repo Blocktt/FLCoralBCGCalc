@@ -475,7 +475,7 @@ shinyServer(function(input, output) {
       sel_proj <- input$taxatrans_pick_official
       sel_user_taxaid <- input$taxatrans_user_col_taxaid
       #sel_col_drop <- unlist(input$taxatrans_user_col_drop)
-      sel_user_ntaxa <- input$taxatrans_user_col_n_taxa
+      # sel_user_ntaxa <- input$taxatrans_user_col_n_taxa
       sel_user_groupby <- unlist(input$taxatrans_user_col_groupby)
       sel_summ <- input$cb_TaxaTrans_Summ
       # sel_user_indexclass <- input$taxatrans_user_col_indexclass
@@ -509,7 +509,8 @@ shinyServer(function(input, output) {
       user_col_keep <- names(df_input)[names(df_input) %in% c(sel_user_groupby
                                                               , sel_user_sampid
                                                               , sel_user_taxaid
-                                                              , sel_user_ntaxa)]
+                                                              # , sel_user_ntaxa
+                                                              )]
       # flip to col_drop
       user_col_drop <- names(df_input)[!names(df_input) %in% user_col_keep]
 
@@ -531,9 +532,9 @@ shinyServer(function(input, output) {
         df_official_metadata <- NULL
       }## IF ~ fn_taxaoff_meta
 
-      if (is.na(sel_user_ntaxa) | sel_user_ntaxa == "") {
-        sel_user_ntaxa <- NULL
-      }## IF ~ fn_taxaoff_meta
+      # if (is.na(sel_user_ntaxa) | sel_user_ntaxa == "") {
+      #   sel_user_ntaxa <- NULL
+      # }## IF ~ fn_taxaoff_meta
 
       if (is.null(sel_summ)) {
         sel_summ <- FALSE
@@ -550,13 +551,7 @@ shinyServer(function(input, output) {
       message(paste0("User response to summarize duplicate sample taxa = "
                , sel_summ))
 
-      # Different result subfolder based on project (bugs/fish)
-      # 2024-01-12
-      if (sel_proj == "NM BCG (Bugs)") {
-        dir_proj_results <- paste("bugs", dir_proj_results, sep = "_")
-      } else if (sel_proj == "NM BCG (Fish)") {
-        dir_proj_results <- paste("fish", dir_proj_results, sep = "_")
-      }## IF ~ sel_proj
+      dir_proj_results <- paste("FLCoral_BCG", dir_proj_results, sep = "_")
 
       dn_files <- paste(abr_results, dir_proj_results, sep = "_")
 
@@ -626,6 +621,7 @@ shinyServer(function(input, output) {
 
       # function parameters
       df_user                 <- df_input
+      df_user$N_TAXA <- 1
       df_official             <- df_taxoff
       df_official_metadata    <- df_taxoff_meta
       taxaid_user             <- sel_user_taxaid
@@ -634,7 +630,7 @@ shinyServer(function(input, output) {
       taxaid_drop             <- sel_taxaid_drop
       col_drop                <- user_col_drop #NULL #sel_col_drop
       sum_n_taxa_boo          <- TRUE
-      sum_n_taxa_col          <- sel_user_ntaxa
+      sum_n_taxa_col          <- "N_TAXA"
       sum_n_taxa_group_by     <- c(sel_user_sampid
                                    , sel_user_taxaid
                                    , sel_user_groupby)
@@ -666,7 +662,7 @@ shinyServer(function(input, output) {
         # drop translation file columns
         col_keep_ttrm <- names(df_ttrm)[names(df_ttrm) %in% c(sel_user_sampid
                                                             , sel_user_taxaid
-                                                            , sel_user_ntaxa
+                                                            # , sel_user_ntaxa
                                                             , "Match_Official"
                                                             , sel_user_groupby)]
         df_ttrm <- df_ttrm[, col_keep_ttrm]
@@ -707,7 +703,7 @@ shinyServer(function(input, output) {
       # Resort columns
       col_start <- c(sel_user_sampid
                      , sel_user_taxaid
-                     , sel_user_ntaxa
+                     # , sel_user_ntaxa
                      , "file_taxatrans"
                      , "file_attributes")
       col_other <- names(taxatrans_results$merge)[!names(taxatrans_results$merge)
@@ -723,18 +719,18 @@ shinyServer(function(input, output) {
                                        %in% sel_user_sampid] <- "SampleID"
         names(taxatrans_results$merge)[names(taxatrans_results$merge)
                                        %in% sel_user_taxaid] <- "TaxaID"
-        names(taxatrans_results$merge)[names(taxatrans_results$merge)
-                                       %in% sel_user_ntaxa] <- "N_Taxa"
+        # names(taxatrans_results$merge)[names(taxatrans_results$merge)
+        #                                %in% sel_user_ntaxa] <- "N_Taxa"
       }## IF ~ boo_req_names
 
       # Hack/Fix
       # Noteworthy NA causing issue later in Shiny app
       # 20231201, only if have Noteworthy
-      if ("NOTEWORTHY" %in% toupper(taxatrans_results$merge)) {
-        taxatrans_results$merge$Noteworthy <- ifelse(is.na(taxatrans_results$merge$Noteworthy)
-                                                     , FALSE
-                                                     , TRUE)
-      }## IF ~ Noteworthy
+      # if ("NOTEWORTHY" %in% toupper(taxatrans_results$merge)) {
+      #   taxatrans_results$merge$Noteworthy <- ifelse(is.na(taxatrans_results$merge$Noteworthy)
+      #                                                , FALSE
+      #                                                , TRUE)
+      # }## IF ~ Noteworthy
 
       # need index class brought through
 
@@ -2204,16 +2200,16 @@ shinyServer(function(input, output) {
 
       # QC, Index_Name & Index_Class
       my_comm <- input$si_community
-      if ((!"INDEX_NAME" %in% toupper(names(df_input)))
-          & (my_comm == "bugs")) {
-        df_input[, "INDEX_NAME"] <- "NM_Bugs_BCG"
-      } else if((!"INDEX_NAME" %in% toupper(names(df_input)))
-                & (my_comm == "fish")){
-        df_input[, "INDEX_NAME"] <- "NM_Fish_BCG"
+      if ((!"INDEX_CLASS" %in% toupper(names(df_input)))
+          & (my_comm == "CREMP_KEYS")) {
+        df_input[, "INDEX_CLASS"] <- "CREMP_KEYS"
+      } else if((!"INDEX_CLASS" %in% toupper(names(df_input)))
+                & (my_comm == "NOT_CREMP_KEYS")){
+        df_input[, "INDEX_CLASS"] <- "NOT_CREMP_KEYS"
       }## IF ~ INDEX_NAME
 
-      if (!"INDEX_CLASS" %in% toupper(names(df_input))) {
-        df_input[, "INDEX_CLASS"] <- "SandyBottomRivers"
+      if (!"INDEX_NAME" %in% toupper(names(df_input))) {
+        df_input[, "INDEX_NAME"] <- "FL_Coral_BCG"
       }## IF ~ INDEX_NAME
 
       ## Calc, 2, Exclude Taxa ----
@@ -2223,57 +2219,57 @@ shinyServer(function(input, output) {
       incProgress(1/prog_n, detail = prog_detail)
       Sys.sleep(prog_sleep)
 
-      # Calc
-      message(paste0("User response to generate ExclTaxa = ", input$ExclTaxa))
-
-      if (input$ExclTaxa) {
-        ## Get TaxaLevel names present in user file
-        phylo_all <- c("Kingdom"
-                       , "Phylum"
-                       , "SubPhylum"
-                       , "Class"
-                       , "SubClass"
-                       , "Order"
-                       , "SubOrder"
-                       , "InfraOrder"
-                       , "SuperFamily"
-                       , "Family"
-                       , "SubFamily"
-                       , "Tribe"
-                       , "Genus"
-                       , "SubGenus"
-                       , "Species"
-                       , "Variety")
-        phylo_all <- toupper(phylo_all) # so matches rest of file
-
-        # case and matching of taxa levels handled inside of markExluded
-
-        # Overwrite existing column if present
-        # ok since user checked the box to calculate
-        if ("EXCLUDE" %in% toupper(names(df_input))) {
-          # save original user input
-          df_input[, "EXCLUDE_USER"] <- df_input[, "EXCLUDE"]
-          # drop column
-          df_input <- df_input[, !names(df_input) %in% "EXCLUDE"]
-        }## IF ~ Exclude
-
-        # overwrite current data frame
-        df_input <- BioMonTools::markExcluded(df_samptax = df_input
-                                              , SampID = "SAMPLEID"
-                                              , TaxaID = "TAXAID"
-                                              , TaxaCount = "N_TAXA"
-                                              , Exclude = "EXCLUDE"
-                                              , TaxaLevels = phylo_all
-                                              , Exceptions = NA)
-
-        # Save Results
-        # fn_excl <- paste0(fn_input_base, fn_abr_save, "1markexcl.csv")
-        fn_excl <- "BCG_1markexcl.csv"
-        dn_excl <- path_results_sub
-        pn_excl <- file.path(dn_excl, fn_excl)
-        write.csv(df_input, pn_excl, row.names = FALSE)
-
-      }## IF ~ input$ExclTaxa
+      # # Calc
+      # message(paste0("User response to generate ExclTaxa = ", input$ExclTaxa))
+      #
+      # if (input$ExclTaxa) {
+      #   ## Get TaxaLevel names present in user file
+      #   phylo_all <- c("Kingdom"
+      #                  , "Phylum"
+      #                  , "SubPhylum"
+      #                  , "Class"
+      #                  , "SubClass"
+      #                  , "Order"
+      #                  , "SubOrder"
+      #                  , "InfraOrder"
+      #                  , "SuperFamily"
+      #                  , "Family"
+      #                  , "SubFamily"
+      #                  , "Tribe"
+      #                  , "Genus"
+      #                  , "SubGenus"
+      #                  , "Species"
+      #                  , "Variety")
+      #   phylo_all <- toupper(phylo_all) # so matches rest of file
+      #
+      #   # case and matching of taxa levels handled inside of markExluded
+      #
+      #   # Overwrite existing column if present
+      #   # ok since user checked the box to calculate
+      #   if ("EXCLUDE" %in% toupper(names(df_input))) {
+      #     # save original user input
+      #     df_input[, "EXCLUDE_USER"] <- df_input[, "EXCLUDE"]
+      #     # drop column
+      #     df_input <- df_input[, !names(df_input) %in% "EXCLUDE"]
+      #   }## IF ~ Exclude
+      #
+      #   # overwrite current data frame
+      #   df_input <- BioMonTools::markExcluded(df_samptax = df_input
+      #                                         , SampID = "SAMPLEID"
+      #                                         , TaxaID = "TAXAID"
+      #                                         , TaxaCount = "N_TAXA"
+      #                                         , Exclude = "EXCLUDE"
+      #                                         , TaxaLevels = phylo_all
+      #                                         , Exceptions = NA)
+      #
+      #   # Save Results
+      #   # fn_excl <- paste0(fn_input_base, fn_abr_save, "1markexcl.csv")
+      #   fn_excl <- "BCG_1markexcl.csv"
+      #   dn_excl <- path_results_sub
+      #   pn_excl <- file.path(dn_excl, fn_excl)
+      #   write.csv(df_input, pn_excl, row.names = FALSE)
+      #
+      # }## IF ~ input$ExclTaxa
 
 
       ## Calc, 3, BCG Flag Cols ----
@@ -2322,21 +2318,17 @@ shinyServer(function(input, output) {
       Sys.sleep(prog_sleep)
 
       # Calc
-      # QC
-      # df_input <- read.csv(file.path("inst", "extdata", "Data_BCG_PacNW.csv"))
-      # df_metval <- BioMonTools::metric.values(df_input, "bugs", boo.Shiny = TRUE)
-
       if (length(cols_flags_keep) > 0) {
         # keep extra cols from Flags (non-metric)
         df_metval <- BioMonTools::metric.values(df_input
-                                                , input$si_community
+                                                , fun.Community = "CORAL"
                                                 , fun.cols2keep = cols_flags_keep
                                                 , boo.Shiny = TRUE
                                                 , verbose = TRUE
                                                 , taxaid_dni = "DNI")
       } else {
         df_metval <- BioMonTools::metric.values(df_input
-                                                , input$si_community
+                                                , fun.Community = "CORAL"
                                                 , boo.Shiny = TRUE
                                                 , verbose = TRUE
                                                 , taxaid_dni = "DNI")
@@ -2359,7 +2351,7 @@ shinyServer(function(input, output) {
       cols_model_metrics <- unique(df_bcg_models[
         df_bcg_models$Index_Name == import_IndexName, "Metric_Name"])
       cols_req <- c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS"
-                    , "ni_total", "nt_total")
+                    , "ncol_total", "nt_total")
       cols_metrics_flags_keep <- unique(c(cols_req
                                           , cols_flags
                                           , cols_model_metrics))
