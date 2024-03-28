@@ -2201,11 +2201,11 @@ shinyServer(function(input, output) {
       # QC, Index_Name & Index_Class
       my_comm <- input$si_community
       if ((!"INDEX_CLASS" %in% toupper(names(df_input)))
-          & (my_comm == "CREMP_KEYS")) {
-        df_input[, "INDEX_CLASS"] <- "CREMP_KEYS"
+          & (my_comm == "CREMP_Keys")) {
+        df_input[, "INDEX_CLASS"] <- "CREMP_Keys"
       } else if((!"INDEX_CLASS" %in% toupper(names(df_input)))
-                & (my_comm == "NOT_CREMP_KEYS")){
-        df_input[, "INDEX_CLASS"] <- "NOT_CREMP_KEYS"
+                & (my_comm == "NOT_CREMP_Keys")){
+        df_input[, "INDEX_CLASS"] <- "NOT_CREMP_Keys"
       }## IF ~ INDEX_NAME
 
       if (!"INDEX_NAME" %in% toupper(names(df_input))) {
