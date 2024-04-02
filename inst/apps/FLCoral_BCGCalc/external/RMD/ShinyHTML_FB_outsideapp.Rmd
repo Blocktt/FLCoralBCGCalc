@@ -32,7 +32,7 @@ traits are not required for each record (i.e., trait fields allow null
 values).
 
 The
-<a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/NM_BCGCalc/Example_Files/NM_BCG_Bugs_BCGCalcInput_20240111.csv" target="_blank">Florida
+<a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/FLCoral_BCGCalc/Example_Files/FL_BCG_FileBuilder_Input_20240328.csv" target="_blank">Florida
 Coral BCG Test File</a> can be used as a guide for your own input file.
 
 ## Input file requirements for coral
