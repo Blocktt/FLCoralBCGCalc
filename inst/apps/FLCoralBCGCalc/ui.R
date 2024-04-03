@@ -16,7 +16,7 @@ dashboardPage(
       body {font-size: 16px;}")),
     db_main_body("dbBody"))
   , footer = dashboardFooter(left = pkg_version
-                             , right = "https://github.com/Blocktt/FLCoral_BCGCalc")
+                             , right = "https://github.com/Blocktt/FLCoralBCGCalc")
 ) ## dashboardPage ~ END
 
 # https://rstudio.github.io/shinydashboard/get_started.html

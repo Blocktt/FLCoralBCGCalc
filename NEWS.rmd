@@ -21,6 +21,11 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+# FLCoral_BCGCalc 0.1.1.9000 (2024-04-03)
+
+-   Updated app into functionally work for Florida BCG models
+-   Testing complete on local system
+
 # FLCoral_BCGCalc 0.1.0.9000 (2024-03-20)
 
 -   Created GitHub repository

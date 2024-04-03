@@ -1,7 +1,7 @@
-Package: FLCoral_BCGCalc
+Package: FLCoralBCGCalc
 Type: Package
 Title: Florida Coral BCG Calculator
-Version: 0.0.1.9000
+Version: 0.1.1
 Authors@R: person("Benjamin D.", "Block", , "Ben.Block@tetratech.com", role = c("aut", "cre"))
            person("Erik W.", "Leppo", email="Erik.Leppo@tetratech.com", role=c("aut","cre"))
 Maintainer: Ben Block <Ben.Block@tetratech.com>
@@ -11,4 +11,4 @@ Description: Shiny app developed for the calculation of the Florida Coral
 License: MIT
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1

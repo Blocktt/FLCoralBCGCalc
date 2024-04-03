@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = FALSE
 # Background
 
 This web app calculates Biological Condition Gradient (BCG) scores for
-the coral/benthic assemblage of Florida\'s Coral Reef ecosystem (Figure
+the coral/benthic assemblage of Florida's Coral Reef ecosystem (Figure
 1). The BCG is a conceptual model that describes how biological
 attributes of aquatic ecosystems change along a gradient of increasing
 human disturbance. The USEPA has published a practitioner's guide to BCG
@@ -28,9 +28,9 @@ the BCG framework
 
 A BCG model that was initially developed for the Caribbean coral reef
 ecosystem, has been applied to the near shore coral reefs within Florida
-jurisdictional waters (Florida\'s Coral Reef), including sites in the
-Dry Tortugas, the Florida Keys, Biscayne National Park, and up the
-eastern coast of Florida to Martin County. Through an iterative process,
+jurisdictional waters (Florida's Coral Reef), including sites in the Dry
+Tortugas, the Florida Keys, Biscayne National Park, and up the eastern
+coast of Florida to Martin County. Through an iterative process,
 scientists from throughout Florida used survey data and expert knowledge
 to develop quantitative decision rules to describe six levels of coral
 reef ecosystem condition. A report on the development of the Florida
@@ -40,6 +40,10 @@ Want to try running the calculator but don't have input files? Download
 the
 <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/FLCoral_BCGCalc/Example_Files/" target="_blank">Florida
 BCG Test Files </a>.
+
+![](images/Map.png){width="75%"}
+
+Figure 1. Florida coral reef sampling sites (N = 4,895).
 
 # Funding and acknowledgments
 
@@ -56,7 +60,7 @@ identify degradation in biological integrity and water quality. It is
 intended to be applied to coral samples that meet the following
 criteria:
 
-**Geographic area**: Florida\'s Coral Reef. Regions therein include the
+**Geographic area**: Florida's Coral Reef. Regions therein include the
 Dry Tortugas, Marquesas, Lower Keys, Middle Keys, Upper Keys, Biscayne,
 and Southeast Florida.
 
