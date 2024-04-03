@@ -1,5 +1,5 @@
 ---
-title: "FLCoral_BCGCalc-NEWS"
+title: "FLCoralBCGCalc-NEWS"
 author: "Ben.Block@tetratech.com"
 date: "`r Sys.time()`"
 output: github_document
@@ -21,12 +21,12 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
-# FLCoral_BCGCalc 0.1.1.9000 (2024-04-03)
+# FLCoralBCGCalc 0.1.1.9000 (2024-04-03)
 
 -   Updated app into functionally work for Florida BCG models
 -   Testing complete on local system
 
-# FLCoral_BCGCalc 0.1.0.9000 (2024-03-20)
+# FLCoralBCGCalc 0.1.0.9000 (2024-03-20)
 
 -   Created GitHub repository
 -   Copied original functionality from NM_BCGCalc repo
