@@ -43,7 +43,7 @@ BCG Test Files </a>.
 
 ![](images/Map.png){width="75%"}
 
-Figure 1. Florida coral reef sampling sites (N = 4,895).
+Figure 1. Florida coral reef sampling sites (N = 4,884).
 
 # Funding and acknowledgments
 

@@ -949,6 +949,15 @@ shinyServer(function(input, output) {
         df_input$INDEX_CLASS <- "NOT_CREMP_Keys"
       } # end if/else
 
+      # Add default value for Juveniles
+      df_input <- df_input %>%
+        mutate(DIAMMAX_CM = case_when((JUVENILE == TRUE & is.na(DIAMMAX_CM) ~ 3)
+                                       , TRUE ~ DIAMMAX_CM)
+               , DIAMPERP_CM = case_when((JUVENILE == TRUE & is.na(DIAMPERP_CM) ~ 2)
+                                        , TRUE ~ DIAMPERP_CM)
+               , HEIGHT_CM = case_when((JUVENILE == TRUE & is.na(HEIGHT_CM) ~ 1)
+                                         , TRUE ~ HEIGHT_CM))
+
       # Calc
       if (length(cols_flags_keep) > 0) {
         # keep extra cols from Flags (non-metric)
@@ -1039,6 +1048,7 @@ shinyServer(function(input, output) {
 
       # Calc
       df_levassign <- BCGcalc::BCG.Level.Assignment(df_levmemb)
+
       # Save Results
       # fn_levassign <- paste0(fn_input_base, fn_abr_save, "5levassign.csv")
       fn_levassign <- "BCG_5levassign.csv"
