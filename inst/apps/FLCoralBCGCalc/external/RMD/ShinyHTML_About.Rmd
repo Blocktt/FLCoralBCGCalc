@@ -1,6 +1,6 @@
 ---
 title: "About"
-date: "2024-03-20"
+date: "2024-09-25"
 output: html_fragment
 editor_options: 
   markdown: 
@@ -72,7 +72,7 @@ transect noting coral morphological characteristics.
 
 For more information on sampling methodologies and application limits,
 see the
-<a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/FLCoral_BCGCalc/Reports/Placeholder.docx" target="_blank">Florida
+<a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/FLCoral_BCGCalc/Reports/Florida_Coral_BCG_Report.zip" target="_blank">Florida
 Coral BCG development report</a>.
 
 # Coral models

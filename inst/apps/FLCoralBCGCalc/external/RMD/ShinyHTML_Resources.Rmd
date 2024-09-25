@@ -1,6 +1,6 @@
 ---
 title: "Resources"
-date: "2024-03-21"
+date: "2024-09-25"
 output: html_fragment
 editor_options: 
   markdown: 
@@ -22,4 +22,5 @@ knitr::opts_chunk$set(echo = FALSE
     Ecosystems. EPA-842-R-16-001. U.S. Environmental Protection Agency,
     Washington, DC.
 
--   **Coming**: Florida Coral BCG Model Development Report
+-   <a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/FLCoral_BCGCalc/Reports/Florida_Coral_BCG_Report.zip" target="_blank">Florida
+    Coral BCG development report</a>
