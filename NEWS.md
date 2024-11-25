@@ -1,11 +1,11 @@
 FLCoralBCGCalc-NEWS
 ================
 <Ben.Block@tetratech.com>
-2024-09-25 10:16:56.308591
+2024-11-25 13:38:08.330325
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-09-25 10:16:56.326564
+    #> Last Update: 2024-11-25 13:38:08.341676
 
 # FLCoralBCGCalc 0.1.1.9004 (2024-09-25)
 
